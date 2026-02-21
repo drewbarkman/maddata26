@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Guessing Game</title>
+</head>
+<body>
+    <h1>Do you know your city?</h1>
+    <div id="intro">
+        <div id="start-menu" class="">
+            <p>Can you guess the local food based on its Google reviews? Let's find out.</p>
+            <form action="" method="get" onsubmit="return false" id="start-game-form">
+                <div id="options">
+                    <label for="mode">Mode:</label>
+                    <select name="type" id="mode">
+                        <option value="all" selected>All</option>
+                        <option value="restaurant">Restaurants</option>
+                        <option value="cafe">Cafes</option>
+                        <option value="bar">Bars</option>
+                        <!-- <option value="campus_buildings">Campus Buildings</option> -->
+                    </select>
+                    <label for="area">Area of Madison:</label>
+                    <select name="area" id="area">
+                        <option value="all">All</option>
+                        <option value="downtown" selected>Campus/Downtown</option>
+                        <option value="westside">West Side</option>
+                        <option value="eastside">East Side</option>
+                    </select>
+                </div>
+                <button id="start-game" type="submit">START</button>
+            </form>
+        </div>
+    </div>
+    <div id="game" class="inactive">
+        <div class="hints">
+            <div class="hint" id="hint1">
+                <div class="title">Hint 1</div>
+                <div class="content">
+                    <div class = "review">demo review</div>
+                </div>
+            </div>
+            <div class="hint inactive" id="hint2">
+                <div class="title">Hint 2</div>
+                <div class="content">
+                    <div class = "review">demo review</div>
+                </div>           
+            </div>
+            <div class="hint inactive" id="hint3"> 
+                <div class="title">Hint 3</div>
+                <div class="content">
+                    <div class = "review">demo map</div>
+                </div>           
+            </div>
+            <button id="another-hint" class="">I need another hint</button>
+        </div>
+        <div class="answers">
+            <button class="option">Ian's Pizza</button>
+            <button class="option">Bagel's Forever</button>
+            <button class="option">Leopold's Cafe</button>
+        </div>
+    </div>
+    <footer>
+        <div>
+            By Drew Barkman and Wesley Erpelding
+        </div>
+    </footer>
+    <!-- <footer>By Drew Barkman and Wesley Erpelding</footer> -->
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</body>
+</html>
