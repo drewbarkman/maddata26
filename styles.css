@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 98vh;
+    min-height: 98vh;
     width: 100%;
     font-size: 20px;
     /* width: 100vh; */
@@ -34,6 +34,12 @@ form {
     line-height: 32px;
 }
 
+#game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .hints {
     display: flex;
     flex-direction: column;
@@ -44,7 +50,7 @@ form {
 
 .hint {
     width: 300px;
-    height: 300px;
+    height: 400px;
     border: 1px solid black;
     padding: 8px;
     margin: 8px;
