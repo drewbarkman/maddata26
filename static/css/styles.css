@@ -186,12 +186,23 @@ footer {
   text-align: center;
 }
 
+.image-space > * {
+  width: 250px;
+}
+
+.map_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* height: %; */
+}
 
 /* #result {
 
 } */
 
-@media screen and (min-width: 677px) {
+@media screen and (min-width: 1000px) {
     .hints {
         display: flex;
         flex-direction: row;
