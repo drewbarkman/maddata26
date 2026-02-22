@@ -14,10 +14,6 @@ app = flask.Flask("Do you know your city?")
 # DYNAMIC
 @app.route("/")
 def home():
-    # with open("index.html") as f:
-    #     html = f.read()
-
-    # mode = flask.request.args.get('mode')
     return flask.render_template('index.html')
 
 @app.route('/data', methods = ["GET", "POST"])
