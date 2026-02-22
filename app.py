@@ -11,7 +11,7 @@ app = flask.Flask("Do you know your city?")
 city_limits = gpd.read_file('City_Limit.geojson')
 water = gpd.read_file("Lakes_and_Rivers.geojson").to_crs(city_limits.crs)
 streets = gpd.read_file("Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
-place_coords = np.array([-89.4070977,43.0680178])
+place_coords = np.array([-89.4070977, 43.0680178])
 
 rand_num = np.random.rand(2)
 while np.sqrt(rand_num[0]**2 + rand_num[1]**2) > 1:
@@ -33,16 +33,25 @@ ax.set_ylim(area_center[1] - 0.02,
             area_center[1] + 0.02)
 
 try:
-    matplotlib.pyplot.savefig("map.svg", format="svg")  
-    print("SVG file saved successfully as 'plot.svg'")
+    f = io.StringIO()
+    matplotlib.pyplot.savefig(f, format="svg", bbox_inches='tight')  
+    print("SVG file saved successfully as f")
 except Exception as e:
     print(f"Error saving SVG: {e}")
 
+# Score tracker
+longest_streak = 0
+current_streak = 0
+current_score = 0
 
 # DYNAMIC
 @app.route("/")
 def home():
     return flask.render_template('index.html')
+
+@app.route("/map.svg")
+def map():
+    return f.getvalue()
 
 @app.route("/script.js")
 def js():
