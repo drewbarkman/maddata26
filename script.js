@@ -155,8 +155,8 @@ next_round.addEventListener('click', () => {
 
     answer_buttons.forEach((button) => {
         if (button.classList.contains('wrong')) {
-            // button.classList.remove('wrong')
-            button.removeEventListener('click')
+            button.classList.remove('wrong')
+            // button.removeEventListener('click')
         } else if (button.classList.contains('correct')) {
             button.classList.remove('correct')
             // button.removeEventListener('click')
