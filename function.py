@@ -71,4 +71,6 @@ def get_reviews(place):
 
     answer = place['name']
 
-    return {'positive': rand_positive, 'negative': rand_negative, 'answer': answer}
+    coords = np.array([place['long'], place['lat']])
+
+    return {'positive': rand_positive, 'negative': rand_negative, 'answer': answer, 'coords': coords}
