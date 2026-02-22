@@ -112,10 +112,12 @@ function loadData(data) {
     url.href = data['url'];
 
     const hint1stars = document.querySelector('#hint1stars');
-    hint1stars.textContent = '*'.repeat(data['positive_rating']);
+    const stars1 = data['positive_rating']
+    hint1stars.textContent = `${stars1} star review:`;
 
     const hint2stars = document.querySelector('#hint2stars');
-    hint2stars.textContent = '*'.repeat(data['negative_rating']);
+    const stars2 = data['negative_rating']
+    hint2stars.textContent = `${stars2} star review:`;
 
     }
 
