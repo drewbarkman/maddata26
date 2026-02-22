@@ -95,6 +95,7 @@ function loadData(data) {
             const btn = e.currentTarget;
             if (btn.classList.contains('wrong')) {
                 streak.textContent = 0
+                score.textContent = 0
                 result_message.classList.remove('inactive');
                 result_message.textContent = `Incorrect, the correct answer was ${data['answer']}`
             } else if (btn.classList.contains('correct')) {
@@ -154,10 +155,13 @@ next_round.addEventListener('click', () => {
 
     answer_buttons.forEach((button) => {
         if (button.classList.contains('wrong')) {
-            button.classList.remove('wrong')
+            // button.classList.remove('wrong')
+            button.removeEventListener('click')
         } else if (button.classList.contains('correct')) {
             button.classList.remove('correct')
+            // button.removeEventListener('click')
         }
+
     resetHints()
 })
 })
