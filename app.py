@@ -21,10 +21,6 @@ f = function.map(place_coords, city_limits, water, streets)
 # DYNAMIC
 @app.route("/")
 def home():
-    # with open("index.html") as f:
-    #     html = f.read()
-
-    # mode = flask.request.args.get('mode')
     return flask.render_template('index.html')
 
 @app.route('/data', methods = ["GET", "POST"])
