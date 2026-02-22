@@ -27,7 +27,6 @@ def send_data():
     mode = flask.request.form.get('mode')
     area = flask.request.form.get('area')
     print(mode, area)
-    test_data = {'mode': mode, 'area': area}
     place = function.choose_place(mode, area)
     print(place)
     reviews = function.get_reviews(place)
