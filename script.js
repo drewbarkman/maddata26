@@ -78,6 +78,7 @@ function loadData(data) {
 
 
 
+    hint2.textContent = data['negative_text'];
     }
     // mark which one is the answer
     // load hint one
