@@ -28,7 +28,7 @@ def send_data():
     global coords 
     coords = reviews['coords']
     print(coords)
-    return flask.jsonify(test_data)
+    return flask.jsonify(reviews)
 
 @app.route("/map.svg")
 def map():
