@@ -9,14 +9,7 @@ import function
 app = flask.Flask("Do you know your city?")
 
 # Making map VVV Change this to whatever place is chosen VVV
-place_coords = np.array([-89.4070977, 43.0680178])
 
-city_limits = gpd.read_file('City_Limit.geojson')
-water = gpd.read_file("Lakes_and_Rivers.geojson").to_crs(city_limits.crs)
-streets = gpd.read_file("Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
-place_coords = np.array([-89.4070977, 43.0680178])
-
-f = function.map(place_coords, city_limits, water, streets)
 
 # DYNAMIC
 @app.route("/")
@@ -29,13 +22,23 @@ def home():
 
 @app.route('/data')
 def send_data():
-    mode = flask.request.args.get('mode')
-    print(mode)
-    test_data = {'name': 'hiiii', 'mode': mode}
-    return flask.jsonify(test_data)
+    # mode = flask.request.args.get('mode')
+    # print(mode)
+    # test_data = {'name': 'hiiii', 'mode': mode}
+    our_type, area = flask.request.args.get('type', 'area')
+    place = function.choose_place(our_type, area)
+    reviews = function.get_reviews(place)
+    return flask.jsonify(reviews)
 
 @app.route("/map.svg")
 def map():
+    place_coords = np.array([-89.4070977, 43.0680178])
+
+    city_limits = gpd.read_file('City_Limit.geojson')
+    water = gpd.read_file("Lakes_and_Rivers.geojson").to_crs(city_limits.crs)
+    streets = gpd.read_file("Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
+
+    f = function.map(place_coords, city_limits, water, streets)
     return f.getvalue()
 
 @app.route("/script.js")
