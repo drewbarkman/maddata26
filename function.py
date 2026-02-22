@@ -101,18 +101,25 @@ def get_reviews(place):
     place_reviews_df = pd.DataFrame(place_reviews[0])
     place_reviews_df = place_reviews_df[~(place_reviews_df['text'].isna())]
 
-    positives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.max()]
-    rand_positive = positives.iloc[int(np.random.rand() * len(positives))]
+    if place_reviews_df.rating.min() == place_reviews_df.rating.max():
+        positives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.max()]
+        rand_num = int(np.random.rand() * len(positives))
+        rand_positive = positives.iloc[rand_num]
+        rand_negative = positives.iloc[(rand_num + 1) % len(positives)]
 
-    negatives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.min()]
-    rand_negative = negatives.iloc[int(np.random.rand() * len(negatives))]
+    else:
+        positives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.max()]
+        rand_positive = positives.iloc[int(np.random.rand() * len(positives))]
 
-    answer = place['name']
+        negatives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.min()]
+        rand_negative = negatives.iloc[int(np.random.rand() * len(negatives))]
 
-    coords = [place['long'], place['lat']]
+        answer = place['name']
 
-    url = place['url']
+        coords = [place['long'], place['lat']]
 
-    return {'positive_rating': rand_positive.to_dict()['rating'], "positive_text": rand_positive.to_dict()['text'], 
-            'negative_rating': rand_negative.to_dict()['rating'], 'negative_text': rand_negative.to_dict()['text'], 
-            'answer': answer, 'coords': coords, 'url': url}
+        url = place['url']
+
+        return {'positive_rating': rand_positive.to_dict()['rating'], "positive_text": rand_positive.to_dict()['text'], 
+                'negative_rating': rand_negative.to_dict()['rating'], 'negative_text': rand_negative.to_dict()['text'], 
+                'answer': answer, 'coords': coords, 'url': url}

@@ -9,6 +9,8 @@ matplotlib.use('agg')
 
 app = flask.Flask("Do you know your city?")
 
+visitors = {}
+
 # DYNAMIC
 @app.route("/")
 def home():
