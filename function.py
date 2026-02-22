@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib
 import io
+import ast
+import pandas as pd
+
+reviews_df = pd.read_csv("testing_reviews.csv")
 
 def map(place_coords, city_limits, water, streets):
     rand_num = np.random.rand(2)
@@ -31,3 +35,25 @@ def map(place_coords, city_limits, water, streets):
 
     matplotlib.pyplot.close()
     return f
+
+def choose_place(our_type, area):
+    place = reviews_df.iloc[int(np.random.rand() * len(reviews_df) // 1)]
+    types = ast.literal_eval(place['our_type'])
+    areas = ast.literal_eval(place['our_area'])
+    while not (our_type in types and area in areas):
+        # print(place['our_type'])
+        # print(place['our_area'])
+        types = ast.literal_eval(place['our_type'])
+        areas = ast.literal_eval(place['our_area'])
+        place = reviews_df.iloc[int(np.random.rand() * len(reviews_df) // 1)]
+
+    return place
+
+def get_reviews(place):
+    place_reviews = ast.literal_eval(place['cleaned_reviews'])
+    place_reviews_df = pd.DataFrame(place_reviews[0])
+    positives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.max()]
+    rand_positive = positives.iloc[int(np.random.rand() * len(positives))]
+    negatives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.min()]
+    rand_negative = negatives.iloc[int(np.random.rand() * len(negatives))]
+    return rand_positive, rand_negative

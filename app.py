@@ -8,19 +8,15 @@ import function
 
 app = flask.Flask("Do you know your city?")
 
-# Making map
+# Making map VVV Change this to whatever place is chosen VVV
 place_coords = np.array([-89.4070977, 43.0680178])
+
 city_limits = gpd.read_file('City_Limit.geojson')
 water = gpd.read_file("Lakes_and_Rivers.geojson").to_crs(city_limits.crs)
 streets = gpd.read_file("Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
 place_coords = np.array([-89.4070977, 43.0680178])
 
 f = function.map(place_coords, city_limits, water, streets)
-
-# Score tracker
-longest_streak = 0
-current_streak = 0
-current_score = 0
 
 # DYNAMIC
 @app.route("/")
