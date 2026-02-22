@@ -114,12 +114,12 @@ def get_reviews(place):
         negatives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.min()]
         rand_negative = negatives.iloc[int(np.random.rand() * len(negatives))]
 
-        answer = place['name']
+    answer = place['name']
 
-        coords = [place['long'], place['lat']]
+    coords = [place['long'], place['lat']]
 
-        url = place['url']
+    url = place['url']
 
-        return {'positive_rating': rand_positive.to_dict()['rating'], "positive_text": rand_positive.to_dict()['text'], 
-                'negative_rating': rand_negative.to_dict()['rating'], 'negative_text': rand_negative.to_dict()['text'], 
-                'answer': answer, 'coords': coords, 'url': url}
+    return {'positive_rating': rand_positive.to_dict()['rating'], "positive_text": rand_positive.to_dict()['text'], 
+            'negative_rating': rand_negative.to_dict()['rating'], 'negative_text': rand_negative.to_dict()['text'], 
+            'answer': answer, 'coords': coords, 'url': url}
