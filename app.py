@@ -20,15 +20,18 @@ def home():
 def send_data():
     mode = flask.request.form.get('mode')
     area = flask.request.form.get('area')
+    print(mode, area)
     test_data = {'mode': mode, 'area': area}
     place = function.choose_place(mode, area)
+    print(place)
     reviews = function.get_reviews(place)
+    global coords 
+    coords = reviews['coords']
+    print(coords)
     return flask.jsonify(test_data)
 
 @app.route("/map.svg")
 def map():
-    coords = np.array([-89.4070977, 43.0680178])
-
     city_limits = gpd.read_file('City_Limit.geojson')
     water = gpd.read_file("Lakes_and_Rivers.geojson").to_crs(city_limits.crs)
     streets = gpd.read_file("Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
