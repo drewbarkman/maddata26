@@ -65,11 +65,6 @@ request_hint_button.addEventListener('click', () => {
     requestHint()
 });
 
-const fakeData = {
-    'options': ['Colectivo', 'Taco Bell Cantina', 'Papa Johns', "Mooyah"],
-    'answer': 'Starbucks'
-}
-
 function loadData(data) {
     // load options
     all_options = data['options'].concat(data['answer'])
@@ -80,6 +75,9 @@ function loadData(data) {
             answer_buttons[random].textContent = all_options[i]
         }
     hint1.textContent = data['positive_text'];
+
+
+
     }
     // mark which one is the answer
     // load hint one

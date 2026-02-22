@@ -5,6 +5,7 @@ import pandas as pd
 import geopandas as gpd
 import numpy as np
 import function
+matplotlib.use('agg')
 
 app = flask.Flask("Do you know your city?")
 
