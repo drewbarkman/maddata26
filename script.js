@@ -106,6 +106,16 @@ function loadData(data) {
 
     map.src = 'map.svg'
     mapHolder.appendChild(map);
+
+    const url = document.querySelector('#google_url');
+    url.href = data['url'];
+
+    const hint1stars = document.querySelector('#hint1stars');
+    hint1stars.textContent = '*'.repeat(data['positive_rating']);
+
+    const hint2stars = document.querySelector('#hint2stars');
+    hint2stars.textContent = '*'.repeat(data['negative_rating']);
+
     }
 
 const result_message = document.querySelector('#winning-message')
