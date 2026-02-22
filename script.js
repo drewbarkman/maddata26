@@ -27,6 +27,9 @@ const hint2box = document.querySelector('#hint2box');
 const hint3box = document.querySelector('#hint3box');
 const request_hint_button = document.querySelector('#another-hint');
 const form = document.querySelector('#start-game-form');
+const hint1 = document.querySelector('#hint1')
+const hint2 = document.querySelector('#hint2')
+const hint3 = document.querySelector('#hint3')
 
 const start_button = document.querySelector('#start-game');
 
@@ -48,6 +51,7 @@ form.addEventListener('submit', async (event) => {
         });
         const data = await res.json();
         console.log('server response', data);
+        loadData(data);
     } catch (err) {
         console.error('Failed to send form data', err);
     }
@@ -68,14 +72,20 @@ const fakeData = {
 
 function loadData(data) {
     // load options
-    secret = Math.floor(Math.random() * 5)
-    console.log(secret)
-    answer_hidden = fakeData['options'].concat(fakeData['answer'])
-
+    all_options = data['options'].concat(data['answer'])
+    index_array = [0, 1, 2, 3, 4]
+    shuffle(index_array)
+    for (let i = 0; i < 5; i++) {
+            random = index_array[i]
+            answer_buttons[random].textContent = all_options[i]
+        }
+    hint1.textContent = data['positive_text'];
+    }
+    // mark which one is the answer
     // load hint one
-}
 
-const hint1 = document.querySelector('#hint1')
+
+
 // hint1.text = x
 
 // from stackoverflow!
@@ -92,11 +102,10 @@ function shuffle(array) {
   }
 }
 
+// loadData(data);
 let index_array = [0, 1, 2, 3, 4];
 shuffle(index_array);
 
 const answer_buttons = document.querySelectorAll('.answer-option');
 
-index_array.forEach((i) => {
-    answer_buttons[i].textContent = answer_hidden[i]
-})
+// loadData(data);

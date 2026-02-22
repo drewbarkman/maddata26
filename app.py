@@ -29,6 +29,17 @@ def send_data():
     coords = reviews['coords']
     print(coords)
     print(reviews)
+
+    options = []
+    while len(options) < 4: 
+        chosen_place = function.choose_place(mode, area)['name']
+        print(chosen_place)
+        if chosen_place in options:
+            continue
+        options.append(chosen_place)
+    
+    reviews['options'] = options
+
     return flask.jsonify(reviews)
 
 @app.route("/map.svg")
