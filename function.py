@@ -52,8 +52,11 @@ def choose_place(our_type, area):
 def get_reviews(place):
     place_reviews = ast.literal_eval(place['cleaned_reviews'])
     place_reviews_df = pd.DataFrame(place_reviews[0])
+    place_reviews_df = place_reviews_df[~(place_reviews_df['text'].isna())]
+
     positives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.max()]
     rand_positive = positives.iloc[int(np.random.rand() * len(positives))]
+
     negatives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.min()]
     rand_negative = negatives.iloc[int(np.random.rand() * len(negatives))]
-    return rand_positive, rand_negative
+    return {'positive': rand_positive, 'negative': rand_negative}
