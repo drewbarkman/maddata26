@@ -30,7 +30,8 @@ def home():
 @app.route('/data', methods = ["GET", "POST"])
 def send_data():
     mode = flask.request.form.get('mode')
-    test_data = {'mode': mode}
+    area = flask.request.form.get('area')
+    test_data = {'mode': mode, 'area': area}
     return flask.jsonify(test_data)
 
 @app.route("/map.svg")
