@@ -5,6 +5,7 @@ import pandas as pd
 import geopandas as gpd
 import numpy as np
 import function
+import os
 matplotlib.use('agg')
 
 app = flask.Flask("Do you know your city?")
@@ -16,6 +17,11 @@ def home():
 
 @app.route('/data', methods = ["GET", "POST"])
 def send_data():
+    try:
+        os.remove('map.svg')
+        print("deleted map")
+    except:
+        print("no map")
     mode = flask.request.form.get('mode')
     area = flask.request.form.get('area')
     print(mode, area)
