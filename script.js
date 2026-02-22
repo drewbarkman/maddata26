@@ -14,9 +14,9 @@ function requestHint() {
 // }
 
 const game_container = document.querySelector('#game');
-const hint1 = document.querySelector('#hint1');
-const hint2 = document.querySelector('#hint2');
-const hint3 = document.querySelector('#hint3');
+const hint1 = document.querySelector('#hint1box');
+const hint2 = document.querySelector('#hint2box');
+const hint3 = document.querySelector('#hint3box');
 const request_hint_button = document.querySelector('#another-hint');
 const form = document.querySelector('#start-game-form');
 
@@ -24,16 +24,23 @@ const start_button = document.querySelector('#start-game');
 
 const game_intro = document.querySelector('#intro');
 
-start_button.addEventListener("click", () => {
-    game_intro.remove();
-    game_container.classList.toggle('inactive');
-});
+// start_button.addEventListener("click", () => {
+//     game_intro.remove();
+//     game_container.classList.toggle('inactive');
+// });
 
 form.addEventListener('submit', async (event) => {
-  event.preventDefault();
+    game_intro.remove();
+    game_container.classList.toggle('inactive');
+    event.preventDefault();
+
+    // fetch('/data')
+    // .then(response => response.json())
+    // .then(data => console.log(data))
 });
 
 request_hint_button.addEventListener('click', () => {
     console.log('hi');
     requestHint()
 });
+

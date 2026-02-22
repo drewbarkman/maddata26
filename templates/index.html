@@ -12,15 +12,18 @@
     <title>Review Guessing Game</title>
 </head>
 <body>
-    <h1>Do you know your city?</h1>
+    <div id="header">
+        <h1>Do you know Madison's food and drink scene?</h1>
+        <p id="instructions">Can you guess the local business based on its Google reviews? Let's find out. The less hints you need, the more points you get. How high of a streak you can get?</p>
+    </div>
     <div id="intro">
         <div id="start-menu" class="">
-            <p id="instructions">Can you guess the local business based on its Google reviews? Let's find out. The less hints you need, the more points you get. Beat your friends!</p>
-            <form action="" method="get" onsubmit="return false" id="start-game-form">
+            
+            <form action="/data" method="get" onsubmit="" id="start-game-form">
                 <div id="options">
                     <div>
                         <label for="mode">Mode:</label>
-                        <select name="type" id="mode">
+                        <select name="mode" id="mode">
                             <option value="all" selected>All</option>
                             <option value="restaurant">Restaurants</option>
                             <option value="fastfood">Fast Food</option>
@@ -58,8 +61,8 @@
             </div>
         </div>
         <div class="hints">
-            <div class="hint" id="hint1">
-                <div class="title">Hint 1</div>
+            <div class="hint" id="hint1box">
+                <div class="title">Review:</div>
                 <div class="content">
                     <div class = "review">
                         I tried to take a picture of the food but it was all gone before I could 😂.  Seriously though this is a great place to stop a and eat.  If im ever back in Madison im definitely stopping by again.
@@ -67,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hint inactive" id="hint2">
+            <div class="hint inactive" id="hint2box">
                 <div class="title">Hint 2</div>
                 <div class="content">
                     <div class = "review">
@@ -78,7 +81,7 @@
                     </div>
                 </div>           
             </div>
-            <div class="hint inactive" id="hint3"> 
+            <div class="hint inactive" id="hint3box"> 
                 <div class="title">Hint 3</div>
                 <div class="content">
                     <div class = "review">demo map</div>
@@ -92,11 +95,13 @@
             <button class="option">Leopold's Cafe</button>
         </div>
     </div>
-    <div id="result" class="alert inactive">
-        <h2 class="inactive">Correct!</h2>
-        <h2 class="inactive">Incorrect, the correct business is <span id="correct-answer"></span></h2>
-        <p>Like the business? Consider reviewing it to support our local businesses.</p>
-        <a href="maps.google.com">Click here to leave a review on Google.</a>
+    <div id="" class="alert result inactive">
+        <h2 class="">Correct!</h2>
+        <h2 class="inactive">Incorrect, the correct business is <span id="correct-answer">FILL IN HERE</span></h2>
+        <div class="message">
+            <p>Like the business? Consider reviewing it to support our local businesses.</p>
+            <a href="maps.google.com">Click here to leave a review on Google.</a>
+        </div>
         <button>Next Round</button>
     </div>
     <footer>

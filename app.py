@@ -49,7 +49,18 @@ current_score = 0
 # DYNAMIC
 @app.route("/")
 def home():
+    # with open("index.html") as f:
+    #     html = f.read()
+
+    # mode = flask.request.args.get('mode')
     return flask.render_template('index.html')
+
+@app.route('/data')
+def send_data():
+    mode = flask.request.args.get('mode')
+    print(mode)
+    test_data = {'name': 'hiiii', 'mode': mode}
+    return flask.jsonify(test_data)
 
 @app.route("/map.svg")
 def map():
