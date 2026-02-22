@@ -19,7 +19,7 @@
     <div id="intro">
         <div id="start-menu" class="">
             
-            <form action="/data" method="get" onsubmit="" id="start-game-form">
+            <form action="{{ url_for('send_data')}}" method="post" id="start-game-form">
                 <div id="options">
                     <div>
                         <label for="mode">Mode:</label>

@@ -20,15 +20,12 @@ def home():
     # mode = flask.request.args.get('mode')
     return flask.render_template('index.html')
 
-@app.route('/data')
+@app.route('/data', methods = ["GET", "POST"])
 def send_data():
-    # mode = flask.request.args.get('mode')
-    # print(mode)
-    # test_data = {'name': 'hiiii', 'mode': mode}
-    our_type, area = flask.request.args.get('type', 'area')
-    place = function.choose_place(our_type, area)
-    reviews = function.get_reviews(place)
-    return flask.jsonify(reviews)
+    mode = flask.request.form.get('mode')
+    area = flask.request.form.get('area')
+    test_data = {'mode': mode, 'area': area}
+    return flask.jsonify(test_data)
 
 @app.route("/map.svg")
 def map():
