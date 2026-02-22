@@ -39,6 +39,8 @@ try:
 except Exception as e:
     print(f"Error saving SVG: {e}")
 
+matplotlib.pyplot.close()
+
 # Score tracker
 longest_streak = 0
 current_streak = 0
