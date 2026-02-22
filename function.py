@@ -46,8 +46,6 @@ def choose_place(our_type, area):
         if type(review['text']) == str:
             count += 1
     while (not our_type in types) or (not area in areas) or (count < 2):
-        print(place['our_type'])
-        print(place['our_area'])
         place = reviews_df.iloc[int(np.random.rand() * len(reviews_df) // 1)]
         types = ast.literal_eval(place['our_type'])
         areas = ast.literal_eval(place['our_area'])
