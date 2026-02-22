@@ -70,9 +70,33 @@ function loadData(data) {
     // load options
     secret = Math.floor(Math.random() * 5)
     console.log(secret)
-    answer_hidden = fakeData['options']
+    answer_hidden = fakeData['options'].concat(fakeData['answer'])
+
     // load hint one
 }
 
 const hint1 = document.querySelector('#hint1')
 // hint1.text = x
+
+// from stackoverflow!
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  while (currentIndex != 0) {
+
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
+let index_array = [0, 1, 2, 3, 4];
+shuffle(index_array);
+
+const answer_buttons = document.querySelectorAll('.answer-option');
+
+index_array.forEach((i) => {
+    answer_buttons[i].textContent = answer_hidden[i]
+})
