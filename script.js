@@ -30,13 +30,22 @@ const game_intro = document.querySelector('#intro');
 // });
 
 form.addEventListener('submit', async (event) => {
-    game_intro.remove();
-    game_container.classList.toggle('inactive');
     event.preventDefault();
 
-    // fetch('/data')
-    // .then(response => response.json())
-    // .then(data => console.log(data))
+    const formData = new FormData(form);
+    try {
+        const res = await fetch('/data', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        console.log('server response', data);
+    } catch (err) {
+        console.error('Failed to send form data', err);
+    }
+
+    game_intro.remove();
+    game_container.classList.toggle('inactive');
 });
 
 request_hint_button.addEventListener('click', () => {
