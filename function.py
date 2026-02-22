@@ -33,8 +33,10 @@ def map(place_coords, city_limits, water, streets):
         print("SVG file saved successfully as f")
     except Exception as e:
         print(f"Error saving SVG: {e}")
+    # matplotlib.pyplot.savefig('map.svg', format="svg", bbox_inches='tight') 
 
     matplotlib.pyplot.close()
+    # pass
     return f
 
 def choose_place(our_type, area):

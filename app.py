@@ -9,9 +9,6 @@ matplotlib.use('agg')
 
 app = flask.Flask("Do you know your city?")
 
-# Making map VVV Change this to whatever place is chosen VVV
-
-
 # DYNAMIC
 @app.route("/")
 def home():
@@ -39,6 +36,7 @@ def send_data():
             continue
         options.append(chosen_place)
     
+
     reviews['options'] = options
 
     return flask.jsonify(reviews)
