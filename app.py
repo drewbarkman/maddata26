@@ -25,6 +25,8 @@ def send_data():
     mode = flask.request.form.get('mode')
     area = flask.request.form.get('area')
     test_data = {'mode': mode, 'area': area}
+    place = function.choose_place(mode, area)
+    reviews = function.get_reviews(place)
     return flask.jsonify(test_data)
 
 @app.route("/map.svg")
