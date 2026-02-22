@@ -51,9 +51,9 @@ def send_data():
 
 @app.route("/map.svg")
 def map():
-    city_limits = gpd.read_file('City_Limit.geojson')
-    water = gpd.read_file("Lakes_and_Rivers.geojson").to_crs(city_limits.crs)
-    streets = gpd.read_file("Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
+    city_limits = gpd.read_file('data/City_Limit.geojson')
+    water = gpd.read_file("data/Lakes_and_Rivers.geojson").to_crs(city_limits.crs)
+    streets = gpd.read_file("data/Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
 
     f = function.map(coords, city_limits, water, streets)
     svg_bytes = f.getvalue()
