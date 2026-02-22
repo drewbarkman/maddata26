@@ -3,6 +3,7 @@ import matplotlib
 import io
 import ast
 import pandas as pd
+from time import sleep
 
 reviews_df = pd.read_csv("testing_reviews.csv")
 
@@ -37,7 +38,8 @@ def map(place_coords, city_limits, water, streets):
     return f
 
 def choose_place(our_type, area):
-    place = reviews_df.iloc[int(np.random.rand() * len(reviews_df) // 1)]
+    place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
+    
     types = ast.literal_eval(place['our_type'])
     areas = ast.literal_eval(place['our_area'])
     non_empty = ast.literal_eval(place['cleaned_reviews'])
@@ -45,8 +47,15 @@ def choose_place(our_type, area):
     for review in ast.literal_eval(place['cleaned_reviews'])[0]:
         if type(review['text']) == str:
             count += 1
-    while (not our_type in types) or (not area in areas) or (count < 2):
-        place = reviews_df.iloc[int(np.random.rand() * len(reviews_df) // 1)]
+    while (not (our_type in types and area in areas)) or (count < 2):
+        # print(types)
+        # print(our_type in types)
+        # print(areas)
+        # print(area in areas)
+        # print(count)
+        # print((not (our_type in types and not area in areas)) or (count < 2))
+        # sleep(3)
+        place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
         types = ast.literal_eval(place['our_type'])
         areas = ast.literal_eval(place['our_area'])
         count = 0
@@ -69,6 +78,8 @@ def get_reviews(place):
 
     answer = place['name']
 
-    coords = np.array([place['long'], place['lat']])
+    coords = [place['long'], place['lat']]
 
-    return {'positive': rand_positive, 'negative': rand_negative, 'answer': answer, 'coords': coords}
+    return {'positive_rating': rand_positive.to_dict()['rating'], "positive_text": rand_positive.to_dict()['text'], 
+            'negative_rating': rand_negative.to_dict()['rating'], 'negative_text': rand_negative.to_dict()['text'], 
+            'answer': answer, 'coords': coords}
