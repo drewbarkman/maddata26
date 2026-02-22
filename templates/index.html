@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:opsz,wght@17..18,400..700&display=swap');
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Review Guessing Game</title>
 </head>
 <body>
     <h1>Do you know your city?</h1>
     <div id="intro">
         <div id="start-menu" class="">
-            <p>Can you guess the local food based on its Google reviews? Let's find out.</p>
+            <p id="instructions">Can you guess the local business based on its Google reviews? Let's find out. The less hints you need, the more points you get. Beat your friends!</p>
             <form action="" method="get" onsubmit="return false" id="start-game-form">
                 <div id="options">
+                    <div>
                     <label for="mode">Mode:</label>
                     <select name="type" id="mode">
                         <option value="all" selected>All</option>
@@ -20,32 +27,55 @@
                         <option value="bar">Bars</option>
                         <!-- <option value="campus_buildings">Campus Buildings</option> -->
                     </select>
-                    <label for="area">Area of Madison:</label>
-                    <select name="area" id="area">
-                        <option value="all">All</option>
-                        <option value="downtown" selected>Campus/Downtown</option>
-                        <option value="westside">West Side</option>
-                        <option value="eastside">East Side</option>
-                    </select>
+                    </div>
+                    <div>
+                        <label for="area">Area of Madison:</label>
+                        <select name="area" id="area">
+                            <option value="all">All</option>
+                            <option value="downtown" selected>Campus/Downtown</option>
+                            <option value="westside">West Side</option>
+                            <option value="eastside">East Side</option>
+                        </select>
+                    </div>
                 </div>
                 <button id="start-game" type="submit">START</button>
             </form>
         </div>
     </div>
     <div id="game" class="inactive">
+        <div id="scoreboard">
+            <div class="score-label">
+                Score:
+                <div class="score">
+                    0
+                </div>
+            </div>
+            <div class="streak-label">
+                Streak:
+                <div class="streak">
+                    0
+                </div>
+            </div>
+        </div>
         <div class="hints">
             <div class="hint" id="hint1">
                 <div class="title">Hint 1</div>
                 <div class="content">
                     <div class = "review">
                         I tried to take a picture of the food but it was all gone before I could 😂.  Seriously though this is a great place to stop a and eat.  If im ever back in Madison im definitely stopping by again.
-                        p.s. The playlist there is great 👍</div>
+                        p.s. The playlist there is great 👍
+                    </div>
                 </div>
             </div>
             <div class="hint inactive" id="hint2">
                 <div class="title">Hint 2</div>
                 <div class="content">
-                    <div class = "review">Food is decent, but the staff is unprofessional. The person handling the food became upset towards me when I noticed her serving others that ordered much later than I did. Crust was burnt for staying in the oven too long. Won’t be coming back.</div>
+                    <div class = "review">
+                        Food is decent, but the staff is unprofessional. The person handling the food became upset towards me when I noticed her serving others that ordered much later than I did. Crust was burnt for staying in the oven too long. Won’t be coming back.
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                    </div>
                 </div>           
             </div>
             <div class="hint inactive" id="hint3"> 
@@ -62,13 +92,18 @@
             <button class="option">Leopold's Cafe</button>
         </div>
     </div>
+    <div id="result" class="alert inactive">
+        <h2 class="inactive">Correct!</h2>
+        <h2 class="inactive">Incorrect, the correct business is <span id="correct-answer"></span></h2>
+        <p>Like the business? Consider reviewing it to support our local businesses.</p>
+        <a href="maps.google.com">Click here to leave a review on Google.</a>
+        <button>Next Round</button>
+    </div>
     <footer>
         <div>
             By Drew Barkman and Wesley Erpelding
         </div>
     </footer>
-    <!-- <footer>By Drew Barkman and Wesley Erpelding</footer> -->
     <script src="./script.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </body>
 </html>

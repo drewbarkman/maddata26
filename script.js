@@ -9,17 +9,16 @@ function requestHint() {
     console.log("complete")
 }
 
+// function winRound() {
+//     toggle win h2
+// }
+
 const game_container = document.querySelector('#game');
 const hint1 = document.querySelector('#hint1');
 const hint2 = document.querySelector('#hint2');
 const hint3 = document.querySelector('#hint3');
 const request_hint_button = document.querySelector('#another-hint');
 const form = document.querySelector('#start-game-form');
-
-// const hint1 = document.createElement('div');
-// hint1.textContent = "Hint 1: Positive Review";
-
-// game_container.appendChild(hint1);
 
 const start_button = document.querySelector('#start-game');
 
