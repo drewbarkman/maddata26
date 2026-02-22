@@ -123,12 +123,6 @@ function loadData(data) {
 const result_message = document.querySelector('#winning-message')
 const result_correct = document.querySelector('#correct')
 
-
-    // mark which one is the answer
-    // load hint one
-
-
-
 // hint1.text = x
 
 // from stackoverflow!
@@ -156,6 +150,15 @@ next_round.addEventListener('click', () => {
     game_intro.classList.remove('inactive');
 
     resetHints()
+    map.remove()
+
+    answer_buttons.forEach((button) => {
+        if (button.classList.contains('wrong')) {
+            button.classList.remove('wrong')
+        } else if (button.classList.contains('correct')) {
+            button.classList.remove('correct')
+        }
+})
 })
 
 

@@ -105,6 +105,8 @@ form {
     justify-content: center;
     align-items: center;
     min-height: 50vh;
+    margin-bottom: 32px;
+    gap: 16px;
 }
 
 .hint {
@@ -168,6 +170,8 @@ form {
 
 button {
     font-size: 25px;
+    border-radius: 8px;
+    border-width: 0.5px;
 }
 
 footer {
@@ -202,6 +206,10 @@ footer {
 
 } */
 
+.answer-option {
+  min-height: 80px;
+}
+
 @media screen and (min-width: 1000px) {
     .hints {
         display: flex;
@@ -211,6 +219,10 @@ footer {
     .answers {
         display: flex;
         flex-direction: row;
+    }
+
+    .hints {
+      margin-bottom: 8px;
     }
     /* header {
         flex: 1;
