@@ -80,6 +80,7 @@ function loadData(data) {
             answer_buttons[random].textContent = all_options[i]
         }
     hint1.textContent = data['positive_text'];
+    hint2.textContent = data['negative_text'];
     }
     // mark which one is the answer
     // load hint one
