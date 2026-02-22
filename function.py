@@ -47,22 +47,51 @@ def choose_place(our_type, area):
     for review in ast.literal_eval(place['cleaned_reviews'])[0]:
         if type(review['text']) == str:
             count += 1
-    while (not (our_type in types and area in areas)) or (count < 2):
-        # print(types)
-        # print(our_type in types)
-        # print(areas)
-        # print(area in areas)
-        # print(count)
-        # print((not (our_type in types and not area in areas)) or (count < 2))
-        # sleep(3)
-        place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
-        types = ast.literal_eval(place['our_type'])
-        areas = ast.literal_eval(place['our_area'])
-        count = 0
-        for review in ast.literal_eval(place['cleaned_reviews'])[0]:
-            if type(review['text']) == str:
-                count += 1
-
+    if our_type == 'all':
+        if area == 'all':
+            while count < 2:
+                place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
+                types = ast.literal_eval(place['our_type'])
+                areas = ast.literal_eval(place['our_area'])
+                count = 0
+                for review in ast.literal_eval(place['cleaned_reviews'])[0]:
+                    if type(review['text']) == str:
+                        count += 1
+        else:
+            while (not area in areas) or (count < 2):
+                place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
+                types = ast.literal_eval(place['our_type'])
+                areas = ast.literal_eval(place['our_area'])
+                count = 0
+                for review in ast.literal_eval(place['cleaned_reviews'])[0]:
+                    if type(review['text']) == str:
+                        count += 1
+    else:
+        if area == 'all':
+            while (not our_type in types) or (count < 2):
+                place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
+                types = ast.literal_eval(place['our_type'])
+                areas = ast.literal_eval(place['our_area'])
+                count = 0
+                for review in ast.literal_eval(place['cleaned_reviews'])[0]:
+                    if type(review['text']) == str:
+                        count += 1
+        else:
+            while (not (our_type in types and area in areas)) or (count < 2):
+                # print(types)
+                # print(our_type in types)
+                # print(areas)
+                # print(area in areas)
+                # print(count)
+                # print((not (our_type in types and not area in areas)) or (count < 2))
+                # sleep(3)
+                place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
+                types = ast.literal_eval(place['our_type'])
+                areas = ast.literal_eval(place['our_area'])
+                count = 0
+                for review in ast.literal_eval(place['cleaned_reviews'])[0]:
+                    if type(review['text']) == str:
+                        count += 1
     return place
 
 def get_reviews(place):
