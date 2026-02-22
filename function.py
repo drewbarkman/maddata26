@@ -111,6 +111,8 @@ def get_reviews(place):
 
     coords = [place['long'], place['lat']]
 
+    url = place['url']
+
     return {'positive_rating': rand_positive.to_dict()['rating'], "positive_text": rand_positive.to_dict()['text'], 
             'negative_rating': rand_negative.to_dict()['rating'], 'negative_text': rand_negative.to_dict()['text'], 
-            'answer': answer, 'coords': coords}
+            'answer': answer, 'coords': coords, 'url': url}
