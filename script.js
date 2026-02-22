@@ -10,6 +10,13 @@ function requestHint() {
     }
 }
 
+function resetHints() {
+    hint2box.classList.add("inactive");
+    hint3box.classList.add("inactive");
+    request_hint_button.classList.remove("inactive");
+    potentialRoundScore = 3;
+}
+
 const game_container = document.querySelector('#game');
 const hint1box = document.querySelector('#hint1box');
 const hint2box = document.querySelector('#hint2box');
@@ -23,7 +30,8 @@ const result_pop_up = document.querySelector('.result')
 const correct_answer = document.querySelector('#correct-answer')
 const score = document.querySelector('.score')
 const streak = document.querySelector('.streak')
-const score_report = document.querySelector('.core-report')
+const score_report = document.querySelector('.score-report')
+const next_round = document.querySelector('#next_round')
 let potentialRoundScore = 3;
 
 
@@ -50,7 +58,7 @@ form.addEventListener('submit', async (event) => {
         console.error('Failed to send form data', err);
     }
 
-    game_intro.remove();
+    game_intro.classList.add('inactive');
     game_container.classList.toggle('inactive');
 });
 
@@ -85,13 +93,13 @@ function loadData(data) {
                 streak.textContent = 0
                 result_message.classList.remove('inactive');
                 result_message.textContent = `Incorrect, the correct answer was ${data['answer']}`
-                result_pop_up.classList.remove('inactive');
             } else if (btn.classList.contains('correct')) {
                 streak.textContent = parseInt(streak.textContent) + 1
                 score.textContent = parseInt(score.textContent) + potentialRoundScore
                 result_message.textContent = "Correct!"
-                result_pop_up.classList.remove('inactive');
             }
+            score_report.textContent = `Your score is currently ${score.textContent} and your streak is currently ${streak.textContent}.`
+            result_pop_up.classList.remove('inactive');
             game_container.classList.add('inactive')
         });
     });
@@ -138,6 +146,15 @@ function shuffle(array) {
 // loadData(data);
 let index_array = [0, 1, 2, 3, 4];
 shuffle(index_array);
+
+
+next_round.addEventListener('click', () => {
+    console.log('testing');
+    result_pop_up.classList.add('inactive');
+    game_intro.classList.remove('inactive');
+
+    resetHints()
+})
 
 
 // loadData(data);
