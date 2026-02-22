@@ -2,24 +2,13 @@ function requestHint() {
     console.log(hint2box.classList);
     if (hint2box.classList.contains("inactive")) {
         hint2box.classList.remove("inactive");
+        potentialRoundScore -= 1;
     } else if (hint3box.classList.contains("inactive")) {
         hint3box.classList.remove("inactive");
         request_hint_button.classList.add("inactive");
+        potentialRoundScore -= 1;
     }
-    console.log("complete")
 }
-
-// function winRound() {
-//     toggle win h2
-// }
-
-const arrayRange = (start, stop, step) =>
-    Array.from(
-    { length: (stop - start) / step + 1 },
-    (value, index) => start + index * step
-    );
-
-console.log(arrayRange(1, 5, 1)); // [1,2,3,4,5]
 
 const game_container = document.querySelector('#game');
 const hint1box = document.querySelector('#hint1box');
@@ -30,15 +19,20 @@ const form = document.querySelector('#start-game-form');
 const hint1 = document.querySelector('#hint1')
 const hint2 = document.querySelector('#hint2')
 const hint3 = document.querySelector('#hint3')
+const result_pop_up = document.querySelector('.result')
+const correct_answer = document.querySelector('#correct-answer')
+const score = document.querySelector('.score')
+const streak = document.querySelector('.streak')
+const score_report = document.querySelector('.core-report')
+let potentialRoundScore = 3;
+
 
 const start_button = document.querySelector('#start-game');
 
 const game_intro = document.querySelector('#intro');
 
-// start_button.addEventListener("click", () => {
-//     game_intro.remove();
-//     game_container.classList.toggle('inactive');
-// });
+const answer_buttons = document.querySelectorAll('.answer-option');
+
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -61,9 +55,11 @@ form.addEventListener('submit', async (event) => {
 });
 
 request_hint_button.addEventListener('click', () => {
-    console.log('hi');
     requestHint()
 });
+
+const mapHolder = document.querySelector(".image-space");
+const map = document.createElement('img');
 
 function loadData(data) {
     // load options
@@ -73,13 +69,41 @@ function loadData(data) {
     for (let i = 0; i < 5; i++) {
             random = index_array[i]
             answer_buttons[random].textContent = all_options[i]
+                if (answer_buttons[random].textContent == data['answer']) {
+                    answer_buttons[random].classList.add('correct');
+            } else {
+                answer_buttons[random].classList.add('wrong');
+            }
         }
     hint1.textContent = data['positive_text'];
-
-
-
     hint2.textContent = data['negative_text'];
+
+    answer_buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const btn = e.currentTarget;
+            if (btn.classList.contains('wrong')) {
+                streak.textContent = 0
+                result_message.classList.remove('inactive');
+                result_message.textContent = `Incorrect, the correct answer was ${data['answer']}`
+                result_pop_up.classList.remove('inactive');
+            } else if (btn.classList.contains('correct')) {
+                streak.textContent = parseInt(streak.textContent) + 1
+                score.textContent = parseInt(score.textContent) + potentialRoundScore
+                result_message.textContent = "Correct!"
+                result_pop_up.classList.remove('inactive');
+            }
+            game_container.classList.add('inactive')
+        });
+    });
+
+    map.src = 'map.svg'
+    mapHolder.appendChild(map);
     }
+
+const result_message = document.querySelector('#winning-message')
+const result_correct = document.querySelector('#correct')
+
+
     // mark which one is the answer
     // load hint one
 
@@ -105,6 +129,5 @@ function shuffle(array) {
 let index_array = [0, 1, 2, 3, 4];
 shuffle(index_array);
 
-const answer_buttons = document.querySelectorAll('.answer-option');
 
 // loadData(data);

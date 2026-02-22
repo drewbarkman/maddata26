@@ -128,7 +128,7 @@ form {
   font-weight: 600px;
 }
 
-#result {
+.result {
   background-color: rgb(206, 207, 208);
   width: 800px;
   height: 300px;
@@ -180,6 +180,10 @@ footer {
     width: 0px;
     border: 0px hidden;
     overflow: hidden;
+}
+
+.result-header {
+  text-align: center;
 }
 
 

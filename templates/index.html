@@ -84,8 +84,9 @@
             <div class="hint inactive" id="hint3box"> 
                 <div class="title">Hint 3</div>
                 <div class="content">
-                    <!-- <div class = "review">demo map</div> -->
-                    <img src="url_for('map.svg')" alt="map of mysterious location">
+                    <div class = "image-space">
+                        <!-- <img id="map-image" src="{{ url_for('map') }}" alt="map of mysterious location"> -->
+                    </div>
                 </div>           
             </div>
             <button id="another-hint" class="">I need another hint</button>
@@ -99,9 +100,9 @@
         </div>
     </div>
     <div id="" class="alert result inactive">
-        <h2 class="">Correct!</h2>
-        <h2 class="inactive">Incorrect, the correct business is <span id="correct-answer">FILL IN HERE</span></h2>
+        <h2 class="result-header" id = "winning-message">Incorrect, the correct business was <span id="correct-answer"></span></h2>
         <div class="message">
+            <p class="score-report">Score Report</p>
             <p>Like the business? Consider reviewing it to support our local businesses.</p>
             <a href="maps.google.com">Click here to leave a review on Google.</a>
         </div>

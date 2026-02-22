@@ -50,7 +50,8 @@ def map():
     streets = gpd.read_file("Street_Centerlines_and_Pavement_Data.geojson").to_crs(city_limits.crs)
 
     f = function.map(coords, city_limits, water, streets)
-    return f.getvalue()
+    svg_bytes = f.getvalue()
+    return flask.Response(svg_bytes, mimetype='image/svg+xml')
 
 @app.route("/script.js")
 def js():
