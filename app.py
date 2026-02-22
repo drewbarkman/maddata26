@@ -62,4 +62,4 @@ def js():
 
 if __name__ == "__main__":
     # threaded must be False whenever we use matplotlib
-    app.run(host="0.0.0.0", debug=True, threaded=False)
+    app.run(host="0.0.0.0", debug=True, threaded=False, port = 8080)
