@@ -68,4 +68,7 @@ def get_reviews(place):
 
     negatives = place_reviews_df[place_reviews_df['rating'] == place_reviews_df.rating.min()]
     rand_negative = negatives.iloc[int(np.random.rand() * len(negatives))]
-    return {'positive': rand_positive, 'negative': rand_negative}
+
+    answer = place['name']
+
+    return {'positive': rand_positive, 'negative': rand_negative, 'answer': answer}
