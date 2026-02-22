@@ -5,7 +5,7 @@ import ast
 import pandas as pd
 from time import sleep
 
-reviews_df = pd.read_csv("testing_reviews.csv")
+reviews_df = pd.read_csv("reviews.csv")
 
 def map(place_coords, city_limits, water, streets):
     rand_num = np.random.rand(2)
@@ -80,13 +80,6 @@ def choose_place(our_type, area):
                         count += 1
         else:
             while (not (our_type in types and area in areas)) or (count < 2):
-                # print(types)
-                # print(our_type in types)
-                # print(areas)
-                # print(area in areas)
-                # print(count)
-                # print((not (our_type in types and not area in areas)) or (count < 2))
-                # sleep(3)
                 place = reviews_df.iloc[int(np.random.rand() * len(reviews_df))]
                 types = ast.literal_eval(place['our_type'])
                 areas = ast.literal_eval(place['our_area'])
@@ -95,7 +88,7 @@ def choose_place(our_type, area):
                     if type(review['text']) == str:
                         count += 1
     return place
-
+ 
 def get_reviews(place):
     place_reviews = ast.literal_eval(place['cleaned_reviews'])
     place_reviews_df = pd.DataFrame(place_reviews[0])
