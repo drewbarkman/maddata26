@@ -86,6 +86,10 @@ function loadData(data) {
     hint1.textContent = data['positive_text'];
     hint2.textContent = data['negative_text'];
 
+    mapHolder.innerHTML = '';
+    map.src = `map.svg?t=${Date.now()}`;
+    mapHolder.appendChild(map);
+
     answer_buttons.forEach((button) => {
         button.addEventListener('click', (e) => {
             const btn = e.currentTarget;
@@ -103,9 +107,6 @@ function loadData(data) {
             game_container.classList.add('inactive')
         });
     });
-
-    map.src = 'map.svg'
-    mapHolder.appendChild(map);
 
     const url = document.querySelector('#google_url');
     url.href = data['url'];
@@ -147,7 +148,6 @@ next_round.addEventListener('click', () => {
     result_pop_up.classList.add('inactive');
     game_intro.classList.remove('inactive');
 
-    resetHints()
     map.remove()
 
     answer_buttons.forEach((button) => {
@@ -156,6 +156,7 @@ next_round.addEventListener('click', () => {
         } else if (button.classList.contains('correct')) {
             button.classList.remove('correct')
         }
+    resetHints()
 })
 })
 
